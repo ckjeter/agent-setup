@@ -1,18 +1,17 @@
-# AI Setup
+# Agent Setup
 
-Personal AI configuration, prompts, and notes. Portable across machines.
+Personal AI configuration and Claude Code skills. Portable across machines.
 
 ## Structure
 
 | Folder | Contents |
 |--------|----------|
-| `claude/` | Claude Code config and tips |
-| `prompts/` | Reusable prompts for any AI tool |
-| `mcp/` | MCP server configurations |
+| `claude/` | Claude Code config, skills, and commands |
+| `mcp/` | MCP server configurations (empty) |
 
 ## Setup on a New Machine
 
 ```bash
-git clone git@github.com:<yourname>/ai-setup.git ~/ai-setup
-ln -s ~/ai-setup/claude/CLAUDE.md ~/.claude/CLAUDE.md
+git clone git@github.com:ckjeter/agent-setup.git ~/agent-setup
+sh ~/agent-setup/install.sh
 ```
