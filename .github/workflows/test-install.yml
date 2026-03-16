@@ -1,0 +1,40 @@
+name: test install.sh
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: fresh install — symlinks are created
+        run: |
+          export HOME="$RUNNER_TEMP/home-fresh"
+          mkdir -p "$HOME/.claude"
+          sh install.sh
+          test -L "$HOME/.claude/CLAUDE.md" || { echo "FAIL: CLAUDE.md not a symlink"; exit 1; }
+          test -L "$HOME/.claude/skills"    || { echo "FAIL: skills not a symlink"; exit 1; }
+          test -L "$HOME/.claude/commands"  || { echo "FAIL: commands not a symlink"; exit 1; }
+          echo "PASS: all symlinks created"
+
+      - name: idempotent re-run — exits cleanly
+        run: |
+          export HOME="$RUNNER_TEMP/home-idempotent"
+          mkdir -p "$HOME/.claude"
+          sh install.sh
+          sh install.sh 2>&1 | grep -q "already linked" || { echo "FAIL: expected 'already linked' output"; exit 1; }
+          echo "PASS: re-run is idempotent"
+
+      - name: pre-existing file — skips without error
+        run: |
+          export HOME="$RUNNER_TEMP/home-existing"
+          mkdir -p "$HOME/.claude"
+          touch "$HOME/.claude/CLAUDE.md"
+          touch "$HOME/.claude/skills"
+          touch "$HOME/.claude/commands"
+          sh install.sh 2>&1 | grep -q "file exists (skipping)" || { echo "FAIL: expected 'file exists (skipping)' output"; exit 1; }
+          test -L "$HOME/.claude/CLAUDE.md" && { echo "FAIL: should not have replaced existing file"; exit 1; }
+          echo "PASS: pre-existing files skipped"
