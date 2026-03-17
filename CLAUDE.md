@@ -46,20 +46,22 @@ claude/skills/
 | `user-invocable: true` | Enables `/skill-name` invocation |
 | `disable-model-invocation: true` | Prevents Claude from auto-triggering |
 
-**Current skills:**
+**Current skills (global):**
 | Skill | Location | Purpose |
 |-------|----------|---------|
-| `commit` | `claude/skills/commit/` | Conventional commit workflow |
-| `pr` | `claude/skills/pr/` | Push branch and open PR |
-| `branch` | `claude/skills/branch/` | Create branch from main |
 | `db-coach` | `claude/skills/db-coach/` | CMU 15-445 study coach |
 | `db-coach-ingest` | `claude/skills/db-coach-ingest/` | Ingest new lecture material |
 | `db-coach-note` | `claude/skills/db-coach-note/` | Save insights to notes |
+| `prompt-coach` | `claude/skills/prompt-coach/` | Prompt engineering coach |
+| `resume-session` | `claude/skills/resume-session/` | Resume a prior session |
+| `save-session` | `claude/skills/save-session/` | Save current session state |
 
 **Current commands:**
 | Command | Location | Purpose |
 |---------|----------|---------|
-| `setup-git` | `claude/commands/setup-git.md` | Scaffold project-local git skills |
+| `setup-git` | `claude/commands/setup-git.md` | Scaffold project-local commit, pr, and branch skills |
+
+> Note: `commit`, `pr`, and `branch` are **project-local** skills scaffolded by `/setup-git` — they are not global skills in this repo.
 
 **Planned** (see `PLAN.md`):
 - `pr-review` command — review PR diff against engineering standards
