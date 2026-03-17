@@ -12,31 +12,33 @@
 - [ ] Add to `install.sh` or as a separate `mcp/install.sh`
 
 ## 3. Prompts Library
-- [x] `prompts/new-project.md` — CLAUDE.md bootstrap template
-- [x] `prompts/prompt-coach.md` — English prompt coaching mode (available as `/prompt-coach`)
-- [ ] `prompts/code-review.md` — standard review prompt
-- [ ] `prompts/debug.md` — structured debugging prompt
+- `prompts/` directory removed — templates moved into `claude/commands/` as invocable commands
+- [ ] `claude/commands/code-review.md` — standard review command
+- [ ] `claude/commands/debug.md` — structured debugging command
 
 ## 4. Settings
 - [ ] Populate `~/.claude/settings.json` with preferred tool auto-approvals (Read, Grep, Glob)
 - [ ] Track a copy at `claude/settings.json` and symlink
 
 ## 5. README Update
-- [ ] Update `README.md` to reflect `agent-setup` rename
-- [ ] Add GitHub repo URL once pushed
+- [x] Update `README.md` to reflect `agent-setup` rename
+- [x] Add GitHub repo URL once pushed
 
 ## 6. Git/GitHub Workflow Commands
-- [ ] Install `commit-commands` plugin — provides `/commit`, `/commit-push-pr`, `/clean_gone`
-- [ ] Install `pr-review-toolkit` plugin — provides 6 PR review agents
-- [ ] Add `prompts/commit-override-template.md` — template for per-project `.claude/commands/commit.md` overrides
-- Note: use commands (not skills) for workflow automation; override globally installed commands per-project via `.claude/commands/`
+- [x] `claude/skills/commit/SKILL.md` — conventional commit skill
+- [x] `claude/skills/pr/SKILL.md` — push branch and open PR
+- [x] `claude/skills/branch/SKILL.md` — create branch from main
+- [x] `claude/commands/setup-git.md` — scaffold project-local git skills interactively
+- [ ] `claude/commands/pr-review.md` — PR review command
 
 ## 7. DB Coach (CMU 15-445)
-- [ ] Create `claude/skills/db-coach/SKILL.md` — global coach persona
-- [ ] Create `knowledge/cmu-db/` — curated concept summaries, tracked in repo
+- [x] Create `claude/skills/db-coach/SKILL.md` — global coach persona
+- [x] `claude/skills/db-coach/concepts/` — curated concept summaries with slides
+- [x] `claude/skills/db-coach/notes/` — memory accumulation for project insights
+- [x] `claude/skills/db-coach-ingest/SKILL.md` — ingest new lecture material
+- [x] `claude/skills/db-coach-note/SKILL.md` — save insights to notes
 - [ ] Set up MCP filesystem server pointing to `~/db-course/` for raw slides/papers
 - [ ] Add `mcp/db-course.json` MCP config and wire into `install.sh`
-- [ ] Add memory accumulation pattern: project insights → `knowledge/cmu-db/notes/`
 - [ ] Reference db-coach in `bustub-private/CLAUDE.md` for agent consultation
 
 ## Out of Scope
