@@ -43,13 +43,8 @@ When I open a project directory that has no `CLAUDE.md`, run this checklist befo
 3. **Detect run/test commands** — look for `Makefile`, `scripts/` in package.json, `Dockerfile`, `docker-compose.yml`
 4. **Check for CI** — `.github/workflows/`, `Jenkinsfile`, etc.
 5. **Detect git conventions** — check for existing `.claude/skills/commit/SKILL.md`, `commitlint.config.*`, `.gitmessage`, or hints in `CONTRIBUTING.md`
-6. **Summarize findings** and offer to create a `CLAUDE.md` using the template at `~/agent-setup/prompts/new-project.md`
-7. **Offer to set up git skills** — if no `.claude/skills/commit/SKILL.md` exists, ask:
-   - Commit message format? (conventional commits / Jira prefix / free-form)
-   - Branching strategy? (trunk-based / gitflow / feature branches)
-   - PR requirements? (required reviewers, linked issue, test checklist)
-   - Ticket system? (Jira project key, Linear team, none)
-   Then scaffold `.claude/skills/commit/` using `~/agent-setup/prompts/commit-override-template.md` as the base.
+6. **Summarize findings** and offer to create a `CLAUDE.md` for the project
+7. **Offer to set up git skills** — if no `.claude/skills/commit/SKILL.md` exists, run `/setup-git` to scaffold project-local commit, pr, and branch skills interactively
 8. **Don't assume** — if the stack is ambiguous, ask before proceeding
 
 ## Notes

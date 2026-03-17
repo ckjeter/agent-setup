@@ -5,7 +5,8 @@ Personal portable AI configuration. Managed alongside ~/.dotfiles.
 ## Purpose
 Makes Claude Code setup reproducible across machines:
 - `claude/CLAUDE.md` → symlinked to `~/.claude/CLAUDE.md` (global Claude config)
-- `prompts/` → reusable prompt templates
+- `claude/skills/` → symlinked to `~/.claude/skills/` (global skills)
+- `claude/commands/` → symlinked to `~/.claude/commands/` (global commands)
 - `mcp/` → MCP server configs (to be added)
 
 ## Install on a New Machine
@@ -19,8 +20,7 @@ sh ~/agent-setup/install.sh
 |------|---------|
 | `claude/CLAUDE.md` | Global Claude preferences and onboarding rules |
 | `claude/skills/` | Custom Claude Code skills (symlinked to `~/.claude/skills/`) |
-| `claude/tips.md` | Reference notes on Claude Code usage |
-| `prompts/new-project.md` | Template for bootstrapping a project CLAUDE.md |
+| `claude/commands/` | Global Claude commands (symlinked to `~/.claude/commands/`) |
 | `mcp/` | MCP server configs (Jira/Confluence pending) |
 | `install.sh` | Symlink setup script |
 
@@ -47,25 +47,22 @@ claude/skills/
 | `disable-model-invocation: true` | Prevents Claude from auto-triggering |
 
 **Current skills:**
-| Skill | Location | Status |
-|-------|----------|--------|
-| `prompt-coach` | `claude/skills/prompt-coach/` | Active — audits English prompts before task execution |
+| Skill | Location | Purpose |
+|-------|----------|---------|
+| `commit` | `claude/skills/commit/` | Conventional commit workflow |
+| `pr` | `claude/skills/pr/` | Push branch and open PR |
+| `branch` | `claude/skills/branch/` | Create branch from main |
+| `db-coach` | `claude/skills/db-coach/` | CMU 15-445 study coach |
+| `db-coach-ingest` | `claude/skills/db-coach-ingest/` | Ingest new lecture material |
+| `db-coach-note` | `claude/skills/db-coach-note/` | Save insights to notes |
 
-**Planned skills** (see `PLAN.md`):
-- `commit` — enforce conventional commits, audit staged diff
-- `pr-review` — review PR diff against engineering standards
-- `jira` — structure Jira ticket descriptions
+**Current commands:**
+| Command | Location | Purpose |
+|---------|----------|---------|
+| `setup-git` | `claude/commands/setup-git.md` | Scaffold project-local git skills |
 
-## Learning Goal (Active)
-
-This repo is the workspace for learning to author and manage Claude Code skills.
-Session context: authoring `SKILL.md` files, understanding frontmatter fields, designing
-skill system prompts, and wiring `install.sh` to keep `~/.claude/skills/` in sync with
-`claude/skills/` via symlink.
-
-**Current state:**
-- `prompt-coach` exists at `~/.claude/skills/` but is not yet tracked in this repo
-- `claude/skills/` directory does not exist yet — next step is to migrate it here
+**Planned** (see `PLAN.md`):
+- `pr-review` command — review PR diff against engineering standards
 
 ## What Lives Here vs. Dotfiles
 - **agent-setup**: AI tool config (Claude, MCP, prompts, skills)
