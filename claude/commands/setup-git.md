@@ -110,6 +110,7 @@ allowed-tools:
   - Bash(git status:*)
   - Bash(git checkout:*)
   - Bash(git branch:*)
+  - Bash(git pull:*)
 argument-hint: "<goal description>"
 ---
 ```
@@ -120,8 +121,9 @@ If ticket system is set: ask for ticket ID and prepend to branch name (e.g. `fea
 Rules:
 - Always branch from base branch; confirm branch name before creating.
 - On uncommitted changes, run `git status` and `git diff` to inspect them:
-  - If the changes are **related to the branch goal** (e.g. user started work on the base branch) → proceed with `git checkout -b <branch>`, which carries the changes over. Note this to the user.
+  - If the changes are **related to the branch goal** (e.g. user started work on the base branch) → create the branch directly with `git checkout -b <branch>` (carries changes over; skip the `checkout main && pull` step). Note this to the user.
   - If the changes are **unrelated to the branch goal** → stop and tell the user which files conflict with the intent. Ask them to handle it (commit, stash, or discard) before continuing. Do NOT stash automatically.
+- When the working tree is clean, always do `git checkout <base-branch> && git pull origin <base-branch>` before creating the branch.
 
 ## Step 4 — Confirm
 
