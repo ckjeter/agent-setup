@@ -115,8 +115,13 @@ argument-hint: "<goal description>"
 ```
 
 Derive branch name from `$ARGUMENTS`. Format: `<type>/<kebab-scope>`.
-Rules: always branch from base branch, abort on uncommitted changes, confirm before creating.
 If ticket system is set: ask for ticket ID and prepend to branch name (e.g. `feat/PROJ-123-auth-refresh`).
+
+Rules:
+- Always branch from base branch; confirm branch name before creating.
+- On uncommitted changes, run `git status` and `git diff` to inspect them:
+  - If the changes are **related to the branch goal** (e.g. user started work on the base branch) → proceed with `git checkout -b <branch>`, which carries the changes over. Note this to the user.
+  - If the changes are **unrelated to the branch goal** → stop and tell the user which files conflict with the intent. Ask them to handle it (commit, stash, or discard) before continuing. Do NOT stash automatically.
 
 ## Step 4 — Confirm
 
